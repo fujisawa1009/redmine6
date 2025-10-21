@@ -1,0 +1,37 @@
+# version: '3.7' # Obsolete in Docker Compose V2
+# Redmine 6 検証環境 - ポート3001で起動
+services:
+    redmine:
+        build: ./docker/redmine
+        container_name: redmine-app-6
+        restart: always
+        ports:
+            - 3001:3000
+        volumes:
+            - ./docker/redmine/plugins:/usr/src/redmine/plugins
+            - ./docker/redmine/themes:/usr/src/redmine/public/themes
+            - ./docker/redmine/config/configuration.yml:/usr/src/redmine/config/configuration.yml
+            - ./docker/redmine/config/cable.yml:/usr/src/redmine/config/cable.yml
+            - ./docker/redmine/repositories:/usr/src/redmine/repositories
+        environment:
+            REDMINE_DB_MYSQL: redmine-db-6
+            REDMINE_DB_PASSWORD: redmine
+            REDMINE_DB_DATABASE: redmine6
+
+    redmine-db:
+        build: ./docker/db
+        container_name: redmine-db-6
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: redmine
+            MYSQL_DATABASE: redmine6
+        volumes:
+            - ./docker/db/data:/var/lib/mysql
+        command: mariadbd --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+    redis:
+        image: redis:7-alpine
+        container_name: redmine-redis-6
+        restart: always
+        ports:
+            - 6381:6379

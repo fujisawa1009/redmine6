@@ -1,0 +1,12 @@
+production:
+  adapter: redis
+  url: redis://redmine-redis:6379/1
+  channel_prefix: redmine_rt_production
+
+development:
+  adapter: redis
+  url: redis://redmine-redis:6379/1
+  channel_prefix: redmine_rt_development
+
+test:
+  adapter: test

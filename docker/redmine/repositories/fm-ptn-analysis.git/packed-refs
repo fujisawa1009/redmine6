@@ -1,0 +1,8 @@
+# pack-refs with: peeled fully-peeled sorted 
+a29b7698832ed8cd03d59b7636884d183dce1ea9 refs/heads/buttons
+b0549217adf7f433d6cceb0d4bd5e4878b602e55 refs/heads/develop
+929fba5a03c01ccef44c41543aa052e464a0cfd4 refs/heads/main
+6016bf9b654848cb81e5e4c6b94374444f7f600c refs/tags/v1.0
+^7c122adedbbf815d09e06907dcd3737f247d9193
+7cc4e9a775a1e42c536b7c91ccc1f886ec9d942f refs/tags/v1.1
+^fd3c4a8be71f4ef41bb0fcb8b1d7bdce0c09434c
