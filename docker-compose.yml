@@ -3,10 +3,10 @@
 services:
     redmine:
         build: ./docker/redmine
-        container_name: redmine-app-6
+        container_name: redmine-app-6   # コンテナ名変更
         restart: always
         ports:
-            - 3001:3000
+            - 3001:3000                 # ポート番号変更（3000→3001）
         volumes:
             - ./docker/redmine/plugins:/usr/src/redmine/plugins
             - ./docker/redmine/themes:/usr/src/redmine/public/themes
@@ -14,24 +14,24 @@ services:
             - ./docker/redmine/config/cable.yml:/usr/src/redmine/config/cable.yml
             - ./docker/redmine/repositories:/usr/src/redmine/repositories
         environment:
-            REDMINE_DB_MYSQL: redmine-db-6
+            REDMINE_DB_MYSQL: redmine-db-6   # DB接続先変更
             REDMINE_DB_PASSWORD: redmine
-            REDMINE_DB_DATABASE: redmine6
+            REDMINE_DB_DATABASE: redmine6    # DB接続先変更
 
     redmine-db:
         build: ./docker/db
-        container_name: redmine-db-6
+        container_name: redmine-db-6         # コンテナ名変更
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: redmine
-            MYSQL_DATABASE: redmine6
+            MYSQL_DATABASE: redmine6         # データベース名変更
         volumes:
             - ./docker/db/data:/var/lib/mysql
         command: mariadbd --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 
     redis:
         image: redis:7-alpine
-        container_name: redmine-redis-6
+        container_name: redmine-redis-6      # コンテナ名変更
         restart: always
         ports:
-            - 6381:6379
+            - 6381:6379                      # ポート番号変更（6379→6381）
